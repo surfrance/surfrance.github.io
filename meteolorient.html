@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurFrance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #efefef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+            overflow-x: auto; /* Permet le défilement horizontal */
+        }
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+			
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+			position: sticky;
+        }
+		.buttons {
+            display: flex;
+            gap: 7px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            color: black;
+        }
+        .back-btn {
+            background-color: #4CAF50;
+        }
+        .share-btn {
+            background-color: #008CBA;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+		.table-container {
+			max-height: 450px; /* Limitez la hauteur du tableau */
+			overflow-y: auto;  /* Activer le défilement vertical */
+			overflow-x: auto;  /* Activer le défilement horizontal si nécessaire */
+			margin-top: 0px;
+			border: 1px solid #ddd;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optionnel : style */
+		}
+        th, td {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .sticky-column {
+            position: sticky;
+            left: 0;
+            background-color: #ffffff;
+            z-index: 2;
+            border-right: 1px solid #ddd;
+        }
+		
+        .error {
+            color: red;
+        }
+		/* Mode sombre */
+		body.dark-mode {
+			background-color: #121212;
+			color: #fff;
+		}
+
+		.container.dark-mode {
+			background-color: #1e1e1e;
+			color: black;
+		}
+
+		table, th, td {
+			border: 1px solid #ddd;
+		}
+
+		table.dark-mode, th.dark-mode, td.dark-mode {
+			border: 1px solid #444;
+		}
+
+		th {
+			background-color: #4CAF50;
+		}
+
+		th.dark-mode {
+			background-color: #333;
+		}
+		.language-selector {
+			position: relative;
+			display: inline-block;
+		}
+
+		#language-button {
+			padding: 10px 15px;
+			font-size: 16px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		#language-list {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: white;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			z-index: 1000;
+			width: 150px;
+			display: none; /* Caché par défaut */
+		}
+
+		#language-list li {
+			padding: 10px;
+			cursor: pointer;
+			text-align: left;
+			font-size: 14px;
+		}
+
+		#language-list li:hover {
+			background-color: #f1f1f1;
+		}
+		
+		#temperature {
+			position: center;
+			top: 10px;
+			
+			font-size: 16px;
+			font-weight: bold;
+			color: #333;
+			background: white;
+			padding: 5px 10px;
+			border-radius: 5px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+		
+		.icon-button {
+			background: none;      /* Pas de fond */
+			border: none;          /* Pas de bordure */
+			cursor: pointer;       /* Curseur en mode clic */
+			padding: 0;            /* Supprime les marges internes */
+			transition: transform 0.4s ease, opacity 0.4s ease; /* Animation */
+			position: absolute; /* Permet le positionnement relatif à l'élément parent */
+			top: 20px;          /* Distance par rapport au haut de la page */
+			right: 20px;        /* Distance par rapport au bord droit de la page */
+			z-index: 1000;      /* S'assurer que le bouton est visible au-dessus des autres éléments */
+		}
+
+		.icon-button:hover {
+			transform: scale(1.5); /* Effet de zoom au survol */
+			opacity: 0.8;          /* Légère transparence */
+		}
+
+		.icon {
+			width: 48px; /* Taille de l'icône */
+			height: 48px;
+			display: block; /* Assure que l'icône est bien affichée */
+			position: absolute; /* Permet le positionnement relatif à l'élément parent */
+			top: 10px;          /* Distance par rapport au haut de la page */
+			right: 10px;        /* Distance par rapport au bord droit de la page */
+			z-index: 1000;      /* S'assurer que le bouton est visible au-dessus des autres éléments */
+		}
+		
+		/* La fenêtre modale (cachée par défaut) */
+		.modal {
+			display: none; /* Cachée par défaut */
+			position: fixed; /* Reste fixe lors du défilement */
+			z-index: 1000; /* S'assure qu'elle apparaît au-dessus des autres éléments */
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+		}
+
+		/* Le contenu de la fenêtre modale */
+		.modal-content {
+			position: relative;
+			margin: 15% auto;
+			padding: 20px;
+			background-color: white;
+			width: 50%; /* Vous pouvez ajuster cette taille */
+			border-radius: 8px;
+		}
+
+		/* Le bouton de fermeture */
+		.close {
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			font-size: 30px;
+			color: #333;
+			cursor: pointer;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: red;
+		}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prévisions météorologiques à Lorient</h1>
+		<div id="webcam-container" class="webcam-container">
+        <!-- Les webcams s'afficheront ici -->
+		</div>
+		<div class="buttons">
+            <button class="back-btn" onclick="goBack()">Retour</button>
+			<button onclick="window.location.href='carteinteractive.html';">Carte</button>
+            <button class="share-btn" onclick="sharePage()">Partager</button>
+			<button onclick="refreshWeather()">Actualiser</button>
+			<button onclick="toggleFullScreen()">Voir en plein écran</button>
+			<button onclick="window.print()">Imprimer</button>
+			<button onclick="toggleMode()">Mode Sombre/Clair</button>	
+			<div class="language-selector">
+				<button id="language-button">🌐 Modifier la langue</button>
+				<ul id="language-list" class="hidden">
+					<li onclick="translatePage('fr')">🇫🇷 Français</li>
+					<li onclick="translatePage('en')">🇬🇧 English</li>
+					<li onclick="translatePage('es')">🇪🇸 Español</li>
+					<li onclick="translatePage('de')">🇩🇪 Deutsch</li>
+					<li onclick="translatePage('zh-CN')">🇨🇳 中文</li>
+					<li onclick="translatePage('ar')">🇸🇦 العربية</li>
+					<li onclick="translatePage('ja')">🇯🇵 日本語</li>
+					<li onclick="translatePage('ru')">🇷🇺 Русский</li>
+				</ul>
+			
+		</div>
+		
+		
+		
+		<button class="open-modal-button" onclick="openModal()">Webcam</button>
+
+		<!-- La fenêtre modale -->
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeModal()">&times;</span>
+				<h2>Webcam Lorient</h2>
+				<iframe width="280" height="157" src="https://www.skaping.com/lorient/guidel-fort-du-loch" title="Webcam Guidel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<iframe width="280" height="157" src="https://www.skaping.com/lorient/rade/video" title="Webcam Guidel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<button class="share-btn"onclick="window.location.href='webcam.html';">Autres Webcams</button>
+			</div>
+		</div>
+		
+		
+		
+		<button onclick="window.location.href='webcam.html';">Autres Webcams</button>
+
+        </div>
+		
+		
+		
+		<div class="header">
+			<div id="horloge"></div>
+			<div id="temperature" style="margin-right: 20px; font-size: 18px; font-weight: bold; color: #333;">
+				Chargement...
+			</div>
+			<div class="search-bar">
+			<input type="text" 
+				id="cityInput" 
+				placeholder="Autre Spot"
+				style="padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-right: 8px;">
+				<button onclick="searchCity()">Rechercher</button>
+				<div id="error" class="error"></div>
+			</div>
+		</div>
+
+       <div class="table-container">
+			<table id="weather-table">
+				<thead>
+					<tr id="day-row">
+						<!-- Jours seront ajoutés ici -->
+					</tr>
+					<tr id="hour-row">
+						<!-- Heures seront ajoutées ici -->
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Les données météo seront ajoutées ici -->
+				</tbody>
+			</table>
+		</div>
+
+    </div>
+	<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script src="webcam.js"></script>
+	<script src="spot.js"></script>
+
+    <script>
+        const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Votre clé API
+        const city = "lorient"; // Changer la ville ici
+        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city},fr&units=metric&lang=fr&appid=${apiKey}`;
+		
+		function goBack() {
+			if (window.history.length > 1) {
+				history.back();
+			} else {
+				window.location.href = "Fiche-Météo.html"; // Remplacez par votre URL par défaut
+			}
+		}
+		
+		function afficherHeure() {
+            const maintenant = new Date();
+            const heures = String(maintenant.getHours()).padStart(2, '0');
+            const minutes = String(maintenant.getMinutes()).padStart(2, '0');
+            const secondes = String(maintenant.getSeconds()).padStart(2, '0');
+            document.getElementById('horloge').textContent = `${heures}:${minutes}:${secondes}`;
+        }
+
+        // Mettre à jour l'heure toutes les secondes
+        setInterval(afficherHeure, 1000);
+
+        // Afficher l'heure immédiatement au chargement
+        afficherHeure();
+
+        // Fonction pour partager la page
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Météo à Lorient',
+                    text: 'Découvrez les prévisions météorologiques à Lorient !',
+                    url: window.location.href,
+                }).catch((error) => console.error('Erreur de partage', error));
+            } else {
+                alert("L'API de partage n'est pas disponible. Copiez ce lien pour partager : " + window.location.href);
+            }
+        }
+		
+		function refreshWeather() {
+			fetchWeather();  // Appel de la fonction de récupération des données météo
+		}
+		
+		function toggleFullScreen() {
+			if (!document.fullscreenElement) {
+				document.documentElement.requestFullscreen();
+			} else {
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				}
+			}
+		}
+		
+		function toggleMode() {
+			const body = document.body;  // Sélectionne l'élément body
+			const container = document.querySelector('.container');  // Sélectionne le conteneur principal
+
+			// Basculer la classe 'dark-mode' sur le body et le conteneur
+			body.classList.toggle('dark-mode');
+			container.classList.toggle('dark-mode');
+			
+			// Optionnel : vous pouvez également sauvegarder la préférence de l'utilisateur
+			if (body.classList.contains('dark-mode')) {
+				localStorage.setItem('theme', 'dark');  // Sauvegarde le mode sombre dans le stockage local
+			} else {
+				localStorage.setItem('theme', 'light');  // Sauvegarde le mode clair
+			}
+		}
+		
+		function handleSearch(event) {
+			event.preventDefault(); // Empêche le rechargement de la page
+			const city = document.getElementById("search-input").value.trim();
+			if (city) {
+				const encodedCity = encodeURIComponent(city);
+				window.location.href = `/webcam.html?city=${encodedCity}`;
+			} else {
+				alert("Veuillez entrer une ville pour rechercher une webcam.");
+			}
+		}
+
+		// Vérifie le mode de l'utilisateur lors du chargement de la page
+		window.onload = () => {
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme === 'dark') {
+				document.body.classList.add('dark-mode');
+				document.querySelector('.container').classList.add('dark-mode');
+			}
+		};
+		
+		// Afficher ou masquer la liste des langues
+		document.getElementById('language-button').addEventListener('click', () => {
+			const languageList = document.getElementById('language-list');
+			languageList.style.display = languageList.style.display === 'block' ? 'none' : 'block';
+		});
+
+		// Traduire la page dans la langue choisie
+		document.querySelectorAll('#language-list li').forEach((item) => {
+			item.addEventListener('click', (event) => {
+				const selectedLang = event.target.getAttribute('data-lang');
+				translatePage(selectedLang);
+				document.getElementById('language-list').style.display = 'none'; // Cache la liste
+			});
+		});
+
+		// Traduction via Google Translate
+		function translatePage(lang) {
+			const googleTranslateFrame = document.querySelector('iframe.goog-te-menu-frame');
+			if (googleTranslateFrame) {
+				const frameDoc = googleTranslateFrame.contentDocument || googleTranslateFrame.contentWindow.document;
+				const langButtons = frameDoc.querySelectorAll('.goog-te-menu2-item span.text');
+				langButtons.forEach(function (btn) {
+					if (btn.textContent.trim().toLowerCase().startsWith(lang)) {
+						btn.click();
+					}
+				});
+			} else {
+				alert("Google Translate n'est pas encore prêt. Veuillez patienter.");
+			}
+		}
+
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'fr', // Langue par défaut
+				includedLanguages: 'fr,en,es,de,zh-CN,ar,ja,ru', // Langues disponibles
+				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+			}, 'google_translate_element');
+		}
+			
+		let isGoogleTranslateReady = false;
+		let googleTranslateFrame = null;
+
+		// Fonction pour vérifier si l'iframe de Google Translate est disponible
+		function checkGoogleTranslateReady() {
+			// Trouver l'iframe de Google Translate
+			googleTranslateFrame = document.querySelector('iframe.goog-te-menu-frame');
+			
+			// Vérifiez si l'iframe est prête (a un document accessible)
+			if (googleTranslateFrame && googleTranslateFrame.contentDocument) {
+				isGoogleTranslateReady = true;
+				clearInterval(googleTranslateInterval); // Arrêter la vérification périodique
+				console.log("Google Translate est prêt");
+			}
+		}
+
+		// Vérifiez si Google Translate est prêt toutes les 500ms
+		const googleTranslateInterval = setInterval(checkGoogleTranslateReady, 500);
+
+		// Fonction appelée lors du clic sur un bouton de traduction
+		function translatePage(lang) {
+			// Si Google Translate n'est pas encore prêt, affichez un message et retournez
+			if (!isGoogleTranslateReady) {
+				alert("Google Translate n'est pas encore prêt. Veuillez patienter.");
+				return;
+			}
+
+			// Une fois prêt, on clique sur le bouton correspondant dans l'iframe
+			const langButtons = googleTranslateFrame.contentDocument.querySelectorAll('.goog-te-menu2-item span.text');
+			langButtons.forEach(function (btn) {
+				if (btn.textContent.trim().toLowerCase().startsWith(lang)) {
+					btn.click(); // Clique sur la langue demandée
+				}
+			});
+		}
+
+		// Initialisation de Google Translate
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'fr', // Langue par défaut
+				includedLanguages: 'fr,en,es,de,zh-CN,ar,ja,ru', // Langues disponibles
+				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+			}, 'google_translate_element');
+		}
+
+
+
+		// Cacher la liste des langues lorsque l'utilisateur clique en dehors
+		document.addEventListener('click', (event) => {
+			const languageSelector = document.querySelector('.language-selector');
+			const languageList = document.getElementById('language-list');
+			if (!languageSelector.contains(event.target)) {
+				languageList.style.display = 'none'; // Cache la liste
+			}
+		});
+
+
+        async function fetchWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error("Impossible de récupérer les données météo.");
+                const data = await response.json();
+                
+                const forecastList = data.list; // Liste des prévisions toutes les 3 heures
+                const dayRow = document.getElementById("day-row");
+                const hourRow = document.getElementById("hour-row");
+                const tableBody = document.getElementById("weather-table").getElementsByTagName('tbody')[0];
+
+                // Grouper les prévisions par jour
+                const days = {};
+                forecastList.forEach((forecast) => {
+                    const date = new Date(forecast.dt * 1000);
+                    const day = date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'short' });
+                    const hour = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+                    if (!days[day]) {
+                        days[day] = [];
+                    }
+                    days[day].push({ hour, forecast });
+                });
+
+                // Générer les en-têtes pour les jours et les heures
+                let dayHeader = "<th class='sticky-column'>Jour</th>";
+                let hourHeader = "<th class='sticky-column'>Heure</th>";
+
+                Object.keys(days).forEach((day) => {
+                    const hours = days[day];
+                    dayHeader += `<th colspan="${hours.length}">${day}`;
+                    hours.forEach(({ hour }) => {
+                        hourHeader += `<th>${hour}`;
+                    });
+                });
+
+                dayRow.innerHTML = dayHeader;
+                hourRow.innerHTML = hourHeader;
+
+                // Ajouter les données météo dans le tableau
+                const infoTypes = [
+                    { name: "Température (°C)", key: (f) => f.main.temp.toFixed(1) },
+                    { name: "Description", key: (f) => f.weather[0].description },
+                    { name: "Vitesse du Vent (m/s)", key: (f) => f.wind.speed.toFixed(1) },
+                    { name: "Direction du Vent (°)", key: (f) => f.wind.deg },
+                    { name: "Humidité (%)", key: (f) => f.main.humidity }
+                ];
+
+                infoTypes.forEach(({ name, key }) => {
+                    const row = document.createElement("tr");
+
+                    // Cellule de la colonne de gauche (sticky)
+                    const typeCell = document.createElement("td");
+                    typeCell.textContent = name;
+                    typeCell.classList.add("sticky-column");
+                    row.appendChild(typeCell);
+
+                    Object.values(days).forEach((hours) => {
+                        hours.forEach(({ forecast }) => {
+                            const cell = document.createElement("td");
+                            cell.textContent = key(forecast);
+                            row.appendChild(cell);
+                        });
+                    });
+
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                const container = document.querySelector(".container");
+                container.innerHTML += `<p class="error">${error.message}`;
+            }
+        }
+
+        fetchWeather();
+		const webcams = [
+            { city: "Paris", url: "https://surfrance.onrender.com/webcam.html" },
+            { city: "Marseille", url: "" },
+            { city: "Lyon", url: "/webcam.html?city=Lyon" },
+            { city: "Crozon", url: "/webcam.html?city=Crozon" },
+        ];
+		
+		async function updateTemperature() {
+			const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Remplacez par votre clé API
+			const city = "lorient"; // Nom de la ville
+			const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=fr`;
+
+			try {
+				const response = await fetch(apiUrl);
+				if (!response.ok) throw new Error("Impossible de récupérer les données météo.");
+				const data = await response.json();
+
+				// Mettre à jour l'élément avec la température
+				const temperature = data.main.temp.toFixed(1); // Température arrondie à 1 décimale
+				const description = data.weather[0].description;
+
+				document.getElementById("temperature").textContent = 
+					`Température actuelle : ${temperature}°C (${description})`;
+			} catch (error) {
+				document.getElementById("temperature").textContent = 
+					"Erreur : Impossible de charger la température.";
+				console.error(error);
+			}
+		}
+
+		// Mettre à jour la température au chargement
+		updateTemperature();
+
+		// Optionnel : Mettre à jour toutes les 10 minutes (600000 ms)
+		setInterval(updateTemperature, 600000);
+		
+		// Fonction pour ouvrir la fenêtre modale
+		function openModal() {
+			document.getElementById("modal").style.display = "block";
+		}
+
+		// Fonction pour fermer la fenêtre modale
+		function closeModal() {
+			document.getElementById("modal").style.display = "none";
+		}
+
+		// Fermer la fenêtre modale si on clique en dehors de la fenêtre
+		window.onclick = function(event) {
+			if (event.target == document.getElementById("modal")) {
+				closeModal();
+			}
+		}
+
+    </script>
+</body>
+</html>
