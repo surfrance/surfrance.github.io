@@ -5,6 +5,7 @@
                 "crozon": "meteocrozon.html",
                 "biarritz": "meteobiarritz.html",
                 "lorient": "meteolorient.html",
+		"sainte barbe": "meteosaintebarbe.html",
 				"guidel": "meteoguidel.html"
                 // Ajoutez d'autres villes ici
             };
