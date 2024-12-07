@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte interactive des spots de surf</title>
+  
+  <!-- Ajouter Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Ajouter Leaflet MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+  <style>
+    /* Donner une hauteur et largeur à la carte */
+    #map {
+      height: 100vh; /* Carte prend toute la hauteur de l'écran */
+      width: 100%;  /* Carte prend toute la largeur */
+    }
+	
+	.overlay-button {
+		position: absolute;
+		z-index: 9999;
+		margin-top: 80px;
+		padding: 2px 20px;
+		font-size: 14px;
+		border-radius: 5px;
+	}
+	
+	.overlay-button:hover {
+      background-color: #777f89;
+    }
+	
+  </style>
+</head>
+<body>
+	<button class="overlay-button" onclick="goBack()">Retour</button>
+  <!-- Conteneur pour la carte -->
+  <div id="map"></div>
+
+  
+  <!-- Ajouter Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Ajouter Leaflet MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <script>
+    // Initialiser la carte
+    var map = L.map('map').setView([46.603354, 1.888334], 6); // Centrer la carte sur la France
+
+    // Ajouter une couche de fond de carte (ici OpenStreetMap)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Créer un groupe de clusters pour les marqueurs
+    var markers = L.markerClusterGroup();
+
+    // Spots de surf en France (coordonnées et URL)
+    var spots = [
+      { name: 'La Torche', lat: 47.8706, lon: -4.3651, url: 'hossegor.html' },
+	  { name: 'Sainte-Barbe', lat: 47.59791277687252, lon: -3.151553285752441, url: 'https://example.com/torche' },
+      { name: 'Maneguen', lat: 47.57658689718211, lon: -3.138925692458588, url: 'https://example.com/saintebarbe' },
+	  { name: 'Perros-guirec', lat: 48.81776106100868, lon: -3.438556190822875, url: 'https://example.com/saintebarbe' },
+      { name: 'Guidel', lat: 47.7731, lon: -3.51422946277067, url: 'https://example.com/guidel' },
+      { name: 'Biarritz', lat: 43.4833, lon: -1.5580, url: 'https://example.com/biarritz' },
+      { name: 'Cap-Ferret', lat: 44.6980, lon: -1.2763, url: 'https://example.com/capferret' },
+      { name: 'Saint-Gilles-Croix-de-Vie', lat: 46.6944, lon: -1.9375, url: 'https://example.com/saintgilles' },
+      { name: 'Hossegor', lat: 43.6536, lon: -1.4338, url: 'https://example.com/hossegor' },
+      { name: 'Lacanau', lat: 44.1186, lon: -1.1911, url: 'https://example.com/lacanau' },
+      { name: 'La Gravière (Hossegor)', lat: 43.6543, lon: -1.4442, url: 'https://example.com/lagraviere' },
+      { name: 'Crozon', lat: 48.20880840012429, lon: -4.554717883139266, url: 'https://example.com/penon' },
+	  { name: 'Erquy', lat: 48.631191485663024, lon: -2.4680553660904327, url: 'https://example.com/penon' },
+	  { name: 'Le Havre', lat: 49.52141370285179, lon: 0.06276320228895611, url: 'https://example.com/penon' },
+      { name: 'Les Sables d’Olonne', lat: 46.4983, lon: -1.7924, url: 'https://example.com/sables' }
+    ];
+
+    // Ajouter des marqueurs à chaque spot et les ajouter au cluster
+    spots.forEach(function(spot) {
+      var marker = L.marker([spot.lat, spot.lon])
+        .bindTooltip(spot.name, {
+          permanent: false,  // Tooltip apparait seulement au survol
+          opacity: 0.7
+        })
+        .on('mouseover', function () {
+          this.openTooltip();
+        })
+        .on('mouseout', function () {
+          this.closeTooltip();
+        })
+        .on('click', function () {
+          window.location.href = spot.url; // Redirige vers la page du spot
+        });
+      
+      // Ajouter chaque marqueur au groupe de clusters
+      markers.addLayer(marker);
+    });
+
+    // Ajouter le groupe de clusters à la carte
+    map.addLayer(markers);
+	
+	function goBack() {
+		if (window.history.length > 1) {
+			history.back();
+		} else {
+			window.location.href = "Fiche-Météo.html"; // Remplacez par votre URL par défaut
+		}
+	}
+  </script>
+</body>
+</html>
