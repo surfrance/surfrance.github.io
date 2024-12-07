@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Page d'accueil -->
-  <url>
-    <loc>https://surfrance.github.io/index.html</loc>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Sitemap principal -->
+  <sitemap>
+    <loc>https://surfrance.github.io/sitemap-pages.xml</loc>
     <lastmod>2024-12-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>
+  </sitemap>
+
+  <!-- Sitemap pour les articles -->
+  <sitemap>
+    <loc>https://surfrance.github.io/sitemap-articles.xml</loc>
+    <lastmod>2024-12-01</lastmod>
+  </sitemap>
+
+  <!-- Sitemap pour les images -->
+  <sitemap>
+    <loc>https://surfrance.github.io/sitemap-images.xml</loc>
+    <lastmod>2024-11-25</lastmod>
+  </sitemap>
+</sitemapindex>
+
