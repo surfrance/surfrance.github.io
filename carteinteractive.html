@@ -12,24 +12,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
 
-	<header>
-		<a  class="logo">SurFrance</a>
-		<nav>
-			<ul class="navlist">
-				<a href="index.html">Acceuil</a>
-				<a href="webcam.html">Webcam</a>
-				<a href="Fiche-Météo.html">Météo</a>
-				<a href="#">Shop</a>
-				<a href="#">Profil</a>
-			</ul>
-		</nav>
-		<div class="nav-right">
-			<a href="#"><i class="ri-search-line"></i></a>
-			<a href="#"><i class="ri-shopping-cart-line"></i></a>
-			<li><a href="#" class="fa-solid fa-user"></a></li>
-			<div class="bx bx-menu" id="menu-icon"></div>
-		</div>
-	</header>
 
   <style>
     /* Donner une hauteur et largeur à la carte */
@@ -69,10 +51,6 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-	map.on('zoomend', function() {
-	  console.log(map.getZoom()); // Afficher le niveau de zoom pour suivre les changements
-	});
 
     // Créer un groupe de clusters pour les marqueurs
     var markers = L.markerClusterGroup();
@@ -120,10 +98,6 @@
     // Ajouter le groupe de clusters à la carte
     map.addLayer(markers);
 
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
-
 	function goBack() {
 		if (window.history.length > 1) {
 			history.back();
@@ -131,16 +105,6 @@
 			window.location.href = "Fiche-Météo.html"; // Remplacez par votre URL par défaut
 		}
 	}
-
-
-
-	map.on('zoomend', function() {
-	  markers.refreshClusters();
-	});
-
-
-
-
 
   </script>
 </body>
