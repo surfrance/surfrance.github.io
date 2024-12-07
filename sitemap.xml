@@ -2,19 +2,19 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Sitemap principal -->
   <sitemap>
-    <loc>https://surfrance.github.io/sitemap-pages.xml</loc>
+    <loc>https://surfrance.github.io/index.html</loc>
     <lastmod>2024-12-07</lastmod>
   </sitemap>
 
   <!-- Sitemap pour les articles -->
   <sitemap>
-    <loc>https://surfrance.github.io/sitemap-articles.xml</loc>
+    <loc>https://surfrance.github.io/Fiche-M%C3%A9t%C3%A9o.html</loc>
     <lastmod>2024-12-01</lastmod>
   </sitemap>
 
   <!-- Sitemap pour les images -->
   <sitemap>
-    <loc>https://surfrance.github.io/sitemap-images.xml</loc>
+    <loc>https://surfrance.github.io/webcam.html</loc>
     <lastmod>2024-11-25</lastmod>
   </sitemap>
 </sitemapindex>
