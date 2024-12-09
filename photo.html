@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez notre galerie de photos spectaculaires de surf capturant l'esprit de ce sport et les moments inoubliables sur l'eau.">
+    <title>SurFrance - Galerie de Surf</title>
+	<link rel="icon" href="logo.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #fff1c1, #ffffff);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #1e90ff;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-family: 'Pacifico', cursive;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav ul a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro h1 {
+            font-size: 2.5rem;
+            color: #1e90ff;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: #1e90ff;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .button-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .button-section a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #1e90ff;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .button-section a:hover {
+            background: #104e8b;
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo">SurFrance</a>
+        <nav>
+            <ul class="navlist">
+                <a href="index.html">Accueil</a>
+                <a href="webcam.html">Webcam</a>
+                <a href="Fiche-Météo.html">Météo</a>
+                <a href="fichemagasin.html">Shop</a>
+                <a href="#">Profil</a>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="intro">
+            <h1>Galerie de Surf</h1>
+            <p>Plongez dans notre galerie de photos époustouflantes de surf, immortalisant les moments les plus incroyables sur les vagues du monde entier.</p>
+        </div>
+
+        <div class="button-section">
+            <a href="infosurf.html">Conseils</a>
+            <a href="spots.html">Meilleurs Spots</a>
+            <a href="histoire.html">Histoire du Surf</a>
+            <a href="galerie.html">Galerie</a>
+            <a href="Fiche-Météo.html">Meteo</a>
+            <a href="matos.html">Matériel</a>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Exemples de photos de surf -->
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/1e90ff/ffffff?text=Surf+1" alt="Surf 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/ff4500/ffffff?text=Surf+2" alt="Surf 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/32cd32/ffffff?text=Surf+3" alt="Surf 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/ff6347/ffffff?text=Surf+4" alt="Surf 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/00ced1/ffffff?text=Surf+5" alt="Surf 5">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/600x400/9400d3/ffffff?text=Surf+6" alt="Surf 6">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SurFrance - Tous droits réservés</p>
+    </footer>
+</body>
+</html>

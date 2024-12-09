@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page de conseils pour le surf avec du contenu riche, attractif et stylé.">
+    <title>SurFrance</title>
+	<link rel="icon" href="logo.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #87ceeb, #ffffff);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #1e90ff;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-family: 'Pacifico', cursive;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav ul a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .nav-right a {
+            margin: 0 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .bx-menu {
+            display: none;
+        }
+
+        /* Section Styling */
+        section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro h1 {
+            font-size: 2.5rem;
+            color: #1e90ff;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .long-content {
+            margin-top: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .long-content h2 {
+            font-size: 1.8rem;
+            color: #1e90ff;
+            margin-top: 2rem;
+        }
+
+        .long-content p {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #1e90ff;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .long-content {
+            animation: fadeIn 2s ease-out;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+		.button-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .button-section a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #1e90ff;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .button-section a:hover {
+            background: #104e8b;
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo">SurFrance</a>
+        <nav>
+            <ul class="navlist">
+                <a href="index.html">Accueil</a>
+                <a href="webcam.html">Webcam</a>
+                <a href="Fiche-Météo.html">Météo</a>
+                <a href="fichemagasin.html">Shop</a>
+                <a href="#">Profil</a>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="intro">
+            <h1>Bienvenue sur SurFrance</h1>
+            <p>Explorez nos conseils experts pour devenir un meilleur surfeur et profitez au maximum de vos sessions de surf.</p>
+        </div>
+		
+		<div class="button-section">
+            <a href="#">Conseils</a>
+            <a href="meilleurspot.html">Meilleurs Spots</a>
+            <a href="histoire.html">histoire du surf</a>
+            <a href="photo.html">Galerie</a>
+            <a href="Fiche-Météo.html">Meteo</a>
+            <a href="materiel.html">Matériel</a>
+        </div>
+
+        <div class="long-content">
+            <h2>Introduction au Surf</h2>
+            <p>Le surf est une activité passionnante et exigeante qui combine des compétences physiques, une connaissance de l'océan et une grande passion pour les vagues. Que vous soyez débutant ou expérimenté, il est toujours possible d'apprendre quelque chose de nouveau.</p>
+
+            <h2>Choisir le Matériel Adapté</h2>
+            <p>Le choix de la planche de surf est essentiel. Pour les débutants, une planche plus large et plus longue offre de la stabilité, tandis que les surfeurs avancés préfèrent des planches plus petites pour une meilleure maniabilité. N'oubliez pas de choisir un leash et une combinaison appropriée en fonction de la température de l'eau.</p>
+
+            <h2>Les Bases de la Sécurité</h2>
+            <p>Avant de vous lancer, prenez le temps de comprendre les règles de priorité, la lecture des courants et les dangers potentiels comme les rochers et les récifs. Restez toujours dans une zone surveillée si vous êtes débutant.</p>
+
+            <h2>Techniques de Surf</h2>
+            <p>La technique du "pop-up" est cruciale pour passer de la position couchée à debout. Entraînez-vous sur la plage avant de vous lancer dans les vagues. Une fois sur l'eau, gardez vos genoux légèrement fléchis et votre regard dirigé vers l'avant.</p>
+
+            <h2>Lire les Conditions</h2>
+            <p>Comprendre la direction et la taille des vagues, ainsi que la marée, peut faire toute la différence. Utilisez des applications et des webcams pour prévoir les meilleures conditions avant de partir surfer.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SurFrance - Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            reveals.forEach(el => {
+                const boxTop = el.getBoundingClientRect().top;
+                if (boxTop < triggerBottom) {
+                    el.classList.add('visible');
+                } else {
+                    el.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
