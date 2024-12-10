@@ -368,8 +368,8 @@
         function sharePage() {
             if (navigator.share) {
                 navigator.share({
-                    title: 'Météo à Guidel',
-                    text: 'Découvrez les prévisions météorologiques à Guidel !',
+                    title: 'Météo à Crozon',
+                    text: 'Découvrez les prévisions météorologiques à Crozon !',
                     url: window.location.href,
                 }).catch((error) => console.error('Erreur de partage', error));
             } else {
@@ -607,7 +607,7 @@
 		
 		async function updateTemperature() {
 			const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Remplacez par votre clé API
-			const city = "lorient"; // Nom de la ville
+			const city = "crozon"; // Nom de la ville
 			const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=fr`;
 
 			try {
