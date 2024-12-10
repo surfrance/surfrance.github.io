@@ -335,46 +335,13 @@
 	<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<script src="webcam.js"></script>
 	<script src="spot.js"></script>
+	<script src="scriptmeteo.js"></script>
 
     <script>
         const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Votre clé API
         const city = "Crozon"; // Changer la ville ici
         const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city},fr&units=metric&lang=fr&appid=${apiKey}`;
 		
-		function goBack() {
-			if (window.history.length > 1) {
-				history.back();
-			} else {
-				window.location.href = "Fiche-Météo.html"; // Remplacez par votre URL par défaut
-			}
-		}
-		
-		function afficherHeure() {
-            const maintenant = new Date();
-            const heures = String(maintenant.getHours()).padStart(2, '0');
-            const minutes = String(maintenant.getMinutes()).padStart(2, '0');
-            const secondes = String(maintenant.getSeconds()).padStart(2, '0');
-            document.getElementById('horloge').textContent = `${heures}:${minutes}:${secondes}`;
-        }
-
-        // Mettre à jour l'heure toutes les secondes
-        setInterval(afficherHeure, 1000);
-
-        // Afficher l'heure immédiatement au chargement
-        afficherHeure();
-
-        // Fonction pour partager la page
-        function sharePage() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Météo à Crozon',
-                    text: 'Découvrez les prévisions météorologiques à Crozon !',
-                    url: window.location.href,
-                }).catch((error) => console.error('Erreur de partage', error));
-            } else {
-                alert("L'API de partage n'est pas disponible. Copiez ce lien pour partager : " + window.location.href);
-            }
-        }
 		
 		function refreshWeather() {
 			fetchWeather();  // Appel de la fonction de récupération des données météo
