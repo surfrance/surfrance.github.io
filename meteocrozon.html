@@ -339,9 +339,43 @@
 
     <script>
         const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Votre clé API
-        const city = "Crozon"; // Changer la ville ici
+        const city = "crozon"; // Changer la ville ici
         const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city},fr&units=metric&lang=fr&appid=${apiKey}`;
 		
+		function goBack() {
+			if (window.history.length > 1) {
+				history.back();
+			} else {
+				window.location.href = "Fiche-Météo.html"; // Remplacez par votre URL par défaut
+			}
+		}
+		
+		function afficherHeure() {
+            const maintenant = new Date();
+            const heures = String(maintenant.getHours()).padStart(2, '0');
+            const minutes = String(maintenant.getMinutes()).padStart(2, '0');
+            const secondes = String(maintenant.getSeconds()).padStart(2, '0');
+            document.getElementById('horloge').textContent = `${heures}:${minutes}:${secondes}`;
+        }
+
+        // Mettre à jour l'heure toutes les secondes
+        setInterval(afficherHeure, 1000);
+
+        // Afficher l'heure immédiatement au chargement
+        afficherHeure();
+
+        // Fonction pour partager la page
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Météo à Guidel',
+                    text: 'Découvrez les prévisions météorologiques à Guidel !',
+                    url: window.location.href,
+                }).catch((error) => console.error('Erreur de partage', error));
+            } else {
+                alert("L'API de partage n'est pas disponible. Copiez ce lien pour partager : " + window.location.href);
+            }
+        }
 		
 		function refreshWeather() {
 			fetchWeather();  // Appel de la fonction de récupération des données météo
@@ -563,10 +597,17 @@
             }
         }
 
+        fetchWeather();
+		const webcams = [
+            { city: "Paris", url: "https://surfrance.onrender.com/webcam.html" },
+            { city: "Marseille", url: "" },
+            { city: "Lyon", url: "/webcam.html?city=Lyon" },
+            { city: "Crozon", url: "/webcam.html?city=Crozon" },
+        ];
 		
 		async function updateTemperature() {
 			const apiKey = "d518ee1f87290e7100d335782f048bd5"; // Remplacez par votre clé API
-			const city = "Crozon"; // Nom de la ville
+			const city = "lorient"; // Nom de la ville
 			const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=fr`;
 
 			try {
@@ -609,7 +650,6 @@
 				closeModal();
 			}
 		}
-
     </script>
 </body>
 </html>
