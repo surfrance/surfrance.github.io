@@ -295,6 +295,69 @@ button:active{
 	color: yellow;
 }
 
+body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('https://www.example.com/path/to/your-beach-image.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+
+    .surf-button {
+      padding: 20px 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #00aaff, #005f7f);
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .surf-button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #006fa6, #003c4b);
+    }
+
+    .surf-button:focus {
+      outline: none;
+    }
+
+    .surf-button span {
+      display: inline-block;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    .surf-button span::after {
+      content: '🌊';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .surf-button:hover span::after {
+      opacity: 1;
+      right: -10px;
+    }
+
 
 
 
