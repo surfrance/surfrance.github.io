@@ -102,6 +102,44 @@
         .cta-button:hover {
             background-color: #e85b4f;
         }
+.button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      background-color: #3498db;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background-color: #2980b9;
+      transform: translateX(-5px);
+    }
+
+    .back-button:focus {
+      outline: none;
+    }
+
+    .back-button .icon {
+      margin-right: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover .icon {
+      transform: translateX(-5px);
+    }
 
         footer {
             text-align: center;
