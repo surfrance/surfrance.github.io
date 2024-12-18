@@ -295,24 +295,11 @@ button:active{
 	color: yellow;
 }
 
-body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f1f1f1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-image: url('https://www.example.com/path/to/your-beach-image.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .button-container {
+.button-container {
       text-align: center;
-    }
+}
 
-    .surf-button {
+.surf-button {
       padding: 20px 40px;
       font-size: 20px;
       font-weight: bold;
@@ -325,16 +312,16 @@ body {
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: all 0.3s ease;
-    }
+}
 
-    .surf-button:hover {
+.surf-button:hover {
       transform: scale(1.1);
       background: linear-gradient(135deg, #006fa6, #003c4b);
-    }
+}
 
-    .surf-button:focus {
+.surf-button:focus {
       outline: none;
-    }
+}
 
     .surf-button span {
       display: inline-block;
