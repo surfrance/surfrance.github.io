@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propriétaires du Site</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+	  background-image: url('https://static01.nyt.com/images/2022/06/06/sports/06secret-surf1/06secret-surf1-videoSixteenByNine3000.jpg'); /* Remplace par ton image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 900px;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      background-color: #3498db;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background-color: #2980b9;
+      transform: translateX(-5px);
+    }
+
+    .back-button:focus {
+      outline: none;
+    }
+
+    .back-button .icon {
+      margin-right: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover .icon {
+      transform: translateX(-5px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Propriétaires du Site</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom du Propriétaire</th>
+          <th>Pourcentage des Parts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WindSurf56</td>
+          <td>50%</td>
+        </tr>
+        <tr>
+          <td>Rem</td>
+          <td>50%</td>
+        </tr>
+      </tbody>
+    </table>
+	<p>Au 18 décembre 2024</p>
+	<div class="button-container">
+		<button class="back-button" onclick="window.history.back()">
+		  <span class="icon">←</span>
+		  Retour
+		</button>
+	</div>
+
+    <div class="footer">
+      <p>&copy; 2024 SurFrance Tous droits réservés.</p>
+    </div>
+  </div>
+
+</body>
+</html>
